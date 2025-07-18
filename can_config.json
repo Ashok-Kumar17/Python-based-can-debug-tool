@@ -1,0 +1,28 @@
+{
+    "linux": {
+        "channel": "can0",
+        "bus_type": "socketcan"
+    },
+    "darwin": {
+        "channel": "PCAN_USBBUS1",
+        "bus_type": "pcan"
+    },
+    "windows": {
+        "channel": "PCAN_USBBUS1",
+        "bus_type": "pcan"
+    },
+    "bus_config": {
+        "bitrate": 500000
+    },
+    "con_config": {
+        "stmin": 32,
+        "blocksize": 8,
+        "wftmax": 0,
+        "ll_data_length": 8,
+        "tx_padding": 0,
+        "rx_flowcontrol_timeout": 1000,
+        "rx_consecutive_frame_timeout": 1000,
+        "squash_stmin_requirement": true,
+        "can_fd": false
+    }
+}

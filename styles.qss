@@ -1,0 +1,83 @@
+QWidget {
+    background-color: #2E2E2E;
+    color: white;
+    font-family: "Arial";
+    font.pixelSize: 100px;
+}
+
+QGroupBox {
+    border: none;
+    margin-top: 10px;
+    padding: 0px;
+}
+
+QLabel {
+    color: #CCCCCC;
+}
+
+QPushButton {
+    background-color: #505050;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0px 0px;
+}
+
+QPushButton:hover {
+    background-color: #606060;
+}
+
+QPushButton:pressed {
+    background-color: #707070;
+}
+
+QCheckBox {
+    spacing: 5px;
+    color: #CCCCCC;
+}
+
+QTableWidget {
+    background-color: #3E3E3E;
+    gridline-color: #707070;
+    color: white;
+    border: 1px solid #4F4F4F;
+}
+
+QTableWidget::item {
+    border: none;
+}
+
+QHeaderView::section {
+    background-color: #505050;
+    color: white;
+    padding: 5px;
+    border: None;
+}
+
+QLineEdit {
+    background-color: #3E3E3E;
+    color: white;
+    border: 1px solid #4F4F4F;
+    padding: 5px;
+}
+
+QMessageBox {
+    background-color: #2E2E2E;
+    color: white;
+    padding: 30px;
+}
+
+QMessageBox QPushButton {
+    background-color: #505050;
+    color: white;
+    border-radius: 2px;
+    padding: 5px 8px;
+}
+
+QMessageBox QPushButton:hover {
+    background-color: #606060;
+}
+
+QMessageBox QPushButton:pressed {
+    background-color: #707070;
+}

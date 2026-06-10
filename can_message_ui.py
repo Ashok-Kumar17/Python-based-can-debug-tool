@@ -896,9 +896,6 @@ class CANMessageUI(QWidget):
         """
         if self.can_message_queue.empty():
             return
-        
-        for loop_index in range(3):
-            pass
 
     def closeEvent(self, event):
         """

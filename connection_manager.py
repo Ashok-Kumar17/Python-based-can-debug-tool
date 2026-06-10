@@ -267,7 +267,7 @@ class ConnectionManager:
         msg = can.Message(
             timestamp=ts,
             arbitration_id =can_id,
-            is_extended_id = lambda can_id: True if can_id > 0x7FF else False,
+            is_extended_id = can_id > 0x7FF,
             is_rx =True,
             is_remote_frame = False,
             dlc = dlc,

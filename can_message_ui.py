@@ -713,15 +713,6 @@ class CANMessageUI(QWidget):
             case _:
                 return False
 
-
-    def create_non_editable_item(self, text):
-        """
-        Create a QTableWidgetItem that is not editable.
-        """
-        item = QTableWidgetItem(text)
-        item.setFlags(item.flags() & ~Qt.ItemIsEditable)
-        return item
-
     def toggle_connection(self):
         """
         Toggle the connection to the selected device type.

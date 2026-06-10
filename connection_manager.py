@@ -7,6 +7,8 @@ import socket
 import sys
 from can_enums import connect_enum
 from PySide6.QtCore import QThread, Signal
+import logging
+logger = logging.getLogger(__name__)
 
 class SerialReaderThread(QThread):
     frame_received = Signal(bytes)

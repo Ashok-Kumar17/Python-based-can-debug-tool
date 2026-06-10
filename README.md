@@ -1,113 +1,95 @@
-# Infinity
+# Infinity — Python CAN Debug Tool
 
-## Overview
-
-**Infinity** is a project I worked on during my internship at **Ather Energy** (Summer 2025).  
-The project involved building and integrating software tools for internal testing and automation within Ather’s embedded systems ecosystem.
-
-During this work, I focused on firmware development, debugging, and creating scalable software modules that interact seamlessly with hardware-level components.  
-The repository serves as a base framework to organize and scale features for internal development and testing.
+A desktop GUI application for monitoring, debugging, and sending CAN bus messages. Built with PySide6 and python-can, developed during an internship at **Ather Energy**.
 
 ---
 
-## My Role & Contributions
+## Features
 
-I contributed to the following areas:
-- Designed and implemented key firmware modules in **C/C++** for hardware communication.
-- Developed automation scripts and debug tools using **Python** for data logging and validation.
-- Integrated GitLab CI/CD pipelines for build verification and deployment within Ather’s ecosystem.
-- Collaborated closely with the Embedded Software and Validation teams to ensure robustness and reliability of releases.
-
----
-
-## Tech Stack
-
-- **Languages:** C, C++, Python  
-- **Frameworks/Tools:** ESP-IDF, PlatformIO, GitLab CI/CD, CAN/TWAI, UART communication  
-- **Version Control:** Git (GitLab-based workflow)  
-- **Platforms:** ESP32-based embedded systems
+- **Multi-interface support** — PCAN (USB), ACAN (custom serial @ 1Mbps), and UDP socket server
+- **Live message table** — real-time CAN frame display with ID, DLC, data bytes, direction, and timestamp
+- **Overwrite mode** — shows only the latest frame per CAN ID (like a live signal monitor)
+- **DBC decoding** — load a `.dbc` file to decode signal values inline in the message table
+- **Send frames** — manually send CAN frames with configurable ID, DLC, and data bytes (keyboard shortcuts Ctrl+1 to Ctrl+0)
+- **FPS counter** — live frames-per-second display
+- **Autoscroll** — optionally follow the latest incoming message
 
 ---
 
-## Repository Structure
+## Requirements
 
+- Python 3.10+
+- PySide6
+- python-can
+- cantools
+- pyserial
 
-infinity/
-├─ firmware/ # Embedded code and modules
-├─ tools/ # Python scripts for automation and logging
-├─ tests/ # Unit and integration test scripts
-├─ docs/ # Internal technical documentation
-└─ .gitlab-ci.yml # CI/CD pipeline configuration
-
-
----
-
-## Getting Started
-
-To clone and work with this repository:
-
+Install dependencies:
 ```bash
-git clone https://gitlab.atherengineering.in/sharan.ap/infinity.git
-cd infinity
+pip install -r requirements.txt
 ```
 
-If this is your first time setting up:
+---
 
-Install required dependencies (Python 3.10+, ESP-IDF v5.x)
+## Setup
 
-Build the firmware:
+1. Clone the repo:
 ```bash
-idf.py build
+git clone https://github.com/Ashok-Kumar17/Python-based-can-debug-tool.git
+cd Python-based-can-debug-tool
 ```
-Run tests locally:
+
+2. Copy the example config and edit it for your machine:
 ```bash
-pytest
+cp can_config.example.json can_config.json
 ```
-Key Features
 
-Modular design for embedded-software scalability.
+Edit `can_config.json` to match your CAN interface. For example, on Linux with a SocketCAN interface:
+```json
+{
+    "linux": { "channel": "can0", "bus_type": "socketcan" },
+    "bus_config": { "bitrate": 500000 }
+}
+```
 
-Integrated CI pipeline for automated testing.
+3. Run the application:
+```bash
+python infinity.py
+```
 
-Hardware abstraction layers to ensure compatibility across ESP-based boards.
+---
 
-Built-in data logging and debug utilities for sensor and communication validation.
+## Connection Modes
 
-Collaboration & Workflow
+| Mode | Description |
+|------|-------------|
+| **PCAN** | PEAK USB CAN adapter via `python-can`. Uses `can_config.json` for channel and bitrate. |
+| **ACAN** | Custom serial-over-USB protocol at 1Mbps. Select your COM/tty port from the dropdown. Frame format: `0xAA [4B timestamp] [1B DLC] [4B CAN ID] [8B data] 0xBB` |
+| **UDP Server** | Listens for CAN frames sent over UDP. Configure IP and port in the Connections tab. |
 
-This project was developed collaboratively within the Ather Engineering team.
-We followed an Agile development workflow with:
+---
 
-Merge requests for code review,
+## File Structure
 
-Issue tracking for task breakdowns,
+```
+├── infinity.py              # Entry point
+├── main_window.py           # Top-level QMainWindow
+├── can_message_ui.py        # Main widget — tabs, controls, message processing
+├── can_message_table.py     # CAN message table model and view
+├── connection_manager.py    # Handles PCAN / ACAN / UDP connections
+├── connection_window.py     # Connection dialog
+├── dbc_manager.py           # DBC file loading and signal decoding
+├── send_frame_manager.py    # CAN frame transmission logic
+├── can_enums.py             # Enums for connection type, capture state, etc.
+├── can_config.example.json  # Template config — copy to can_config.json
+├── styles.qss               # Qt stylesheet
+└── requirements.txt
+```
 
-Continuous Integration for quality assurance,
+---
 
-Regular testing and validation on target hardware.
+## Author
 
-Learnings & Takeaways
-
-Working on Infinity deepened my understanding of:
-
-End-to-end software-hardware integration in production environments,
-
-Structuring scalable embedded systems repositories,
-
-Best practices in CI/CD and code review,
-
-Collaborative version control in large engineering teams.
-
-This experience also strengthened my transition path from Embedded Systems Engineering to Software Development & AI/ML, helping me understand how low-level systems interact with high-level software intelligence.
-
-License
-
-Internal Ather repository (proprietary).
-This README is for demonstration and portfolio purposes only.
-
-Author
-
-Ashok Kumar Meena
-Electrical Engineering, IIT Madras
-Embedded Systems & Software Engineer | Ather Energy ( ex Intern)
-
+**Ashok Kumar Meena**  
+Electrical Engineering, IIT Madras  
+Intern — Embedded Software, Ather Energy (Summer 2025)

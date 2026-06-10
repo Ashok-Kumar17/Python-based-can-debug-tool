@@ -38,6 +38,8 @@ from connection_manager import ConnectionManager
 from dbc_manager import DBCManager
 from send_frame_manager import SendFrameManager
 import serial.tools.list_ports
+import logging
+logger = logging.getLogger(__name__)
 
 class CANMessageUI(QWidget):
 

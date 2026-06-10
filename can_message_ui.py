@@ -698,7 +698,7 @@ class CANMessageUI(QWidget):
 
             print(f"[DEBUG] Sorting column {column_index} in {'ascending' if self.current_sort_order == Qt.AscendingOrder else 'descending'} order")
 
-        self.can_msg_table.sortItems(column_index, self.current_sort_order)
+        self.can_message_table.sortItems(column_index, self.current_sort_order)
 
     def capture_button_set_state(self, state):
         match state:
@@ -793,15 +793,6 @@ class CANMessageUI(QWidget):
         """
         self.fps_value_label.setText(f"{self.frames_in_last_second}")
         self.frames_in_last_second = 0
-
-    def process_received_message(self, msg):
-        """
-        Process the received CAN message and enqueue it for batch GUI updates.
-        """
-        if self.is_capturing_paused:
-            return
-        
-        self.can_message_queue.put(msg)
 
     def calculate_timestamp_diff(self, first_timestamp, current_timestamp):
         """

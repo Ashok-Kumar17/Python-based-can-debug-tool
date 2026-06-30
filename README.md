@@ -1,4 +1,6 @@
 # Infinity — Python CAN Debug Tool
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Qt](https://img.shields.io/badge/PySide6-41CD52?style=flat&logo=qt&logoColor=white)
 
 A desktop GUI application for monitoring, debugging, and sending CAN bus messages. Built with PySide6 and python-can, developed during an internship at **Ather Energy**.
 

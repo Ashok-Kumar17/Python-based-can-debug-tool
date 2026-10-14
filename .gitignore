@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Machine-specific CAN interface config (copy can_config.example.json)
+can_config.json

@@ -1,0 +1,17 @@
+{
+    "linux": {
+        "channel": "can0",
+        "bus_type": "socketcan"
+    },
+    "darwin": {
+        "channel": "PCAN_USBBUS1",
+        "bus_type": "pcan"
+    },
+    "windows": {
+        "channel": "PCAN_USBBUS1",
+        "bus_type": "pcan"
+    },
+    "bus_config": {
+        "bitrate": 500000
+    }
+}

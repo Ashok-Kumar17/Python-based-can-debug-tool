@@ -94,7 +94,8 @@ class ConnectionManager:
             try:
                 with open(self.config_path, "r") as config_file:
                     can_config = json.load(config_file)
-                    platform = sys.platform
+                    # sys.platform is "win32" on Windows, but the config key is "windows"
+                    platform = "windows" if sys.platform.startswith("win") else sys.platform
                     connection_config = can_config[platform]
                     bus_config = can_config["bus_config"]
                     bitrate = bus_config["bitrate"]
